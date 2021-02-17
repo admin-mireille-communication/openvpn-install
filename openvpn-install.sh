@@ -729,11 +729,11 @@ function installOpenVPN() {
 		case $TLS_SIG in
 		1)
 			# Generate tls-crypt key
-			openvpn --genkey --secret /etc/openvpn/tls-crypt.key
+			sudo openvpn --genkey --secret /etc/openvpn/tls-crypt.key
 			;;
 		2)
 			# Generate tls-auth key
-			openvpn --genkey --secret /etc/openvpn/tls-auth.key
+			sudo openvpn --genkey --secret /etc/openvpn/tls-auth.key
 			;;
 		esac
 	else
@@ -897,7 +897,7 @@ verb 3" >>/etc/openvpn/server.conf
 		echo 'net.ipv6.conf.all.forwarding=1' >>/etc/sysctl.d/99-openvpn.conf
 	fi
 	# Apply sysctl rules
-	sysctl --system
+	sudo sysctl --system
 
 	# If SELinux is enabled and a custom port was selected, we need this
 	if hash sestatus 2>/dev/null; then
